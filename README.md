@@ -4,7 +4,10 @@
 
 💡 Currently diving deep into modern web development while building interactive, user-friendly experiences
 
-![Jack's GitHub Stats](https://github-readme-stats.vercel.app/api?username=Jack-okoth735&show_icons=true&theme=radical)
+
+An opinionated list of awesome Python frameworks, libraries, software and resources.
+
+Inspired by awesome-php.![Jack's GitHub Stats](https://github-readme-stats.vercel.app/api?username=Jack-okoth735&show_icons=true&theme=radical)
 
 ---
 
