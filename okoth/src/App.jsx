@@ -1,97 +1,51 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import './App.css';
 
-function DynamicListManager() {
-  const [newItem, setNewItem] = useState('');
-  const [items, setItems] = useState(['First Item']); // Initialize with the existing item
-
-  const handleInputChange = (event) => {
-    setNewItem(event.target.value);
-  };
+function App() {
+  const [items, setItems] = useState([]);
+  const [inputValue, setInputValue] = useState('');
 
   const handleAddItem = () => {
-    if (newItem.trim() !== '') {
-      setItems([...items, newItem]);
-      setNewItem(''); // Clear the input field
+    if (inputValue.trim() !== '') {
+      setItems([...items, inputValue.trim()]);
+      setInputValue('');
     }
   };
 
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
   return (
-    <div style={styles.container}>
-      <h2 style={styles.heading}>Dynamic List Manager</h2>
-      <div style={styles.inputContainer}>
+    <div className="app-container">
+      <h1>Dynamic List Manager</h1>
+      <div className="input-container">
         <input
           type="text"
-          placeholder="Enter an item"
-          value={newItem}
+          value={inputValue}
           onChange={handleInputChange}
-          style={styles.input}
+          placeholder="Enter an item"
+          className="input-field"
         />
-        <button onClick={handleAddItem} style={styles.addButton}>
+        <button onClick={handleAddItem} className="add-button">
           Add Item
         </button>
       </div>
-      <div style={styles.listContainer}>
-        <ul>
-          {items.map((item, index) => (
-            <li key={index} style={styles.listItem}>
-              {item}
-            </li>
-          ))}
-        </ul>
+      <div className="list-container">
+        {items.length === 0 ? (
+          <p className="empty-message"></p>
+        ) : (
+          <ul className="item-list">
+            {items.map((item, index) => (
+              <li key={index} className="list-item">
+                {item}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
 }
 
-const styles = {
-  container: {
-    fontFamily: 'sans-serif',
-    padding: '20px',
-    border: '1px solid #ccc',
-    borderRadius: '5px',
-    maxWidth: '400px',
-    margin: '20px auto',
-    backgroundColor: '#f9f9f9',
-  },
-  heading: {
-    textAlign: 'center',
-    marginBottom: '20px',
-    color: '#007bff',
-  },
-  inputContainer: {
-    display: 'flex',
-    marginBottom: '15px',
-  },
-  input: {
-    flexGrow: 1,
-    padding: '10px',
-    border: '1px solid #ccc',
-    borderRadius: '3px',
-    fontSize: '16px',
-  },
-  addButton: {
-    backgroundColor: '#28a745',
-    color: 'white',
-    border: 'none',
-    padding: '10px 15px',
-    borderRadius: '3px',
-    cursor: 'pointer',
-    fontSize: '16px',
-    marginLeft: '10px',
-  },
-  listContainer: {
-    border: '1px solid #ddd',
-    borderRadius: '3px',
-    backgroundColor: '#e9ecef',
-    padding: '15px',
-    minHeight: '100px',
-  },
-  listItem: {
-    padding: '8px 0',
-    borderBottom: '1px solid #eee',
-    listStyleType: 'disc',
-    marginLeft: '20px',
-  },
-};
-
-export default DynamicListManager;
+export default App;
